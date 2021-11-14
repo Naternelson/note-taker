@@ -11,8 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "fs": "^0.0.1-security",
     "jest": "^27.3.1",
-    "supertest": "^6.1.6"
+    "lodash": "^4.17.21",
+    "supertest": "^6.1.6",
+    "uuid": "^8.3.2"
   },
   "jest": {
     "testEnvironment": "node",
