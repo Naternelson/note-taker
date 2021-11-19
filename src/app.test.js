@@ -88,7 +88,7 @@ describe("API Requests", () => {
         })
         describe("db should update correctly given actions", () => {
             
-        })
+        }) 
         describe("when data is improperly given", ()=>{
             test("it should return status code of 400", async () => {
                 const res = await request(app).post(noteRoute.root).send({title: "Failing"})

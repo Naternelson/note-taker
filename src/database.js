@@ -1,6 +1,8 @@
 const fs = require("fs")
+const promisify = require("promisify")
 const {v4: uuid} = require("uuid")
 const path = require("path")
+
 const filepath = path.resolve(__dirname, "../db/db.json")
 
 function model({dbType = "json", validation}){
@@ -18,13 +20,13 @@ function model({dbType = "json", validation}){
     // ====================
 
     const readDb = async () => {
-            const data = await fs.readFile(db) 
-            return JSON.parse(data)
-        }
+        const data = await promisify(fs.readFile(db)) 
+        return JSON.parse(data)
     }
+    
     const write = async (newData) => {
         if (typeof validation === "function" && !validation(newData)) throw new Error("Data is invalid")
-        await fs.writeFile(db, newData)
+        await promisify(fs.writeFile(db, newData))
         return newData 
     }
 
@@ -70,7 +72,7 @@ function model({dbType = "json", validation}){
     }
     return public 
 
-    
+   
 }
 
 
