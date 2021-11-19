@@ -2,10 +2,10 @@
   "name": "note-taker",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "./src/server.js",
   "scripts": {
-    "run": "nodmon .",
-    "test": "NODE_ENV=test jest"
+    "start": "nodemon .",
+    "test": "NODE_ENV=test jest --detectOpenHandles"
   },
   "author": "Nate Nelson",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "fs": "^0.0.1-security",
     "jest": "^27.3.1",
     "lodash": "^4.17.21",
+    "path": "^0.12.7",
     "supertest": "^6.1.6",
     "uuid": "^8.3.2"
   },

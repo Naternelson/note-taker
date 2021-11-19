@@ -7,12 +7,16 @@ const index = jest.fn()
 const create = jest.fn()
 const update = jest.fn()
 const destroy = jest.fn()
+const inValid = jest.fn()
+const errMessage = "Error Message"
 
 const app = generateApp({
     index, 
     create, 
     update,
-    destroy
+    destroy,
+    inValid,
+    errMessage
 })
 
 
@@ -41,7 +45,7 @@ describe("API Requests", () => {
             const res = await request(app).get(noteRoute.root)
             expect(res.statusCode).toBe(200)
         })
-        test("it should specify json in conent type header", async()=>{
+        test("it should specify json in content type header", async()=>{
             const res = await request(app).get(noteRoute.root)
             expect(res.headers['content-type']).toEqual(expect.stringContaining("json"))
         })
@@ -50,7 +54,6 @@ describe("API Requests", () => {
             expect(res.body).toBeDefined()
             expect(Array.isArray(res.body)).toBe(true)
         })
-        test.todo("it should return json data from db.json")
     })
     describe("POST " + noteRoute.root,()=>{
         beforeEach(()=> create.mockReset())
@@ -86,7 +89,7 @@ describe("API Requests", () => {
         describe("db should update correctly given actions", () => {
             
         })
-        describe("when data is improperly give", ()=>{
+        describe("when data is improperly given", ()=>{
             test("it should return status code of 400", async () => {
                 const res = await request(app).post(noteRoute.root).send({title: "Failing"})
                 expect(res.statusCode).toBe(400)
